@@ -10,16 +10,13 @@ public class Transfer {
 	private String newClub;
 	
 	private Player player;
-	
 	private List<Article> articles = new ArrayList<>();
-	//private static Set<Article> allArticles = new HashSet<>();
 	
 	public void addArticle(Article article) throws Exception {
 		if(!articles.contains(article)) {
 			articles.add(article);
 		}
-	}
-	
+	}	
 	
 	public Transfer(int fee, LocalDate date, String newClub) {
 		this.fee = fee;
