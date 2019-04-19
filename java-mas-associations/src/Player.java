@@ -31,15 +31,21 @@ public class Player {
 	}
 	
 	public void setCurrentClub(Club club) {
-		currentClub = club;
+		if(currentClub != null) {
+			club.clearConnections();
+		}
+		
+		if(currentClub != club) {
+			currentClub = club;
+			club.addPlayerQualif(this);
+		}
 	}
 	
 	public void addTransfer(Transfer tranfser) {
 		if(!transfers.contains(tranfser)) {
 			transfers.add(tranfser);
-		}
-		
-		tranfser.setPlayer(this);
+			tranfser.setPlayer(this);
+		}		
 	}
 	
 	public void clearTransferConnections() {
@@ -63,7 +69,6 @@ public class Player {
 		this.scoredGoals += scoredGoals;
 	}
 	
-
 	public void setMatchStats(MatchStats matchStats) {
 		if(this.matchStats != null) {
 			matchStats.clearPlayerConnections();
@@ -71,17 +76,41 @@ public class Player {
 			matchStats.addPlayer(this);
 		}else {
 			this.matchStats = matchStats;
-		}
-		
+		}		
 	}
 	
-
 	public void showTransfers() {
 		System.out.println(this);
 		for (Transfer transfer : transfers) {
 			System.out.println(transfer.getNewClub() + " " + transfer.getDate() 
 			+ "; fee: " + transfer.getFee());
 		}
+	}
+	
+	public float getMarketValue() {
+		return marketValue;
+	}
+
+	public DominantFoot getDominantFoot() {
+		return dominantFoot;
+	}
+
+	public int getYellowCards() {
+		return yellowCards;
+	}
+
+	public int getRedCards() {
+		return redCards;
+	}
+
+	public int getScoredGoals() {
+		return scoredGoals;
+	}
+
+
+	public String getCurrentClub() {
+		// TODO Auto-generated method stub
+		return currentClub.getName();
 	}
 	
 }

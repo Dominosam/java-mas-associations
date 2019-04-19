@@ -1,6 +1,5 @@
 import java.time.LocalDate;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -21,14 +20,31 @@ public class Club {
 	public void addPlayerQualif(Player newPlayer) {
 		if(!playerQualif.containsKey(newPlayer.getId())){
 			playerQualif.put(newPlayer.getId(), newPlayer);
+			newPlayer.setCurrentClub(this);
+		}	
+	}
+	
+	public Player findPlayerQualif(Integer id) throws Exception{
+		if(!playerQualif.containsKey(id)) {
+			throw new Exception("There is no that player");
 		}
-		
-		newPlayer.setCurrentClub(this);
-			
+		return playerQualif.get(id);		
+	}
+	
+	public void clearConnections() {
+		playerQualif.clear();
 	}
 	
 	public Collection<Player> getPlayers(){
 		return playerQualif.values();
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public LocalDate getEstablished() {
+		return established;
 	}
 	
 	@Override
@@ -40,7 +56,6 @@ public class Club {
 		for (Player player : playerQualif.values()) {
 			toReturn += "\n" + player;
 		}
-		return toReturn;
-		
+		return toReturn;		
 	}
 }

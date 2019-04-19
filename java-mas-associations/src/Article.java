@@ -10,16 +10,28 @@ public class Article {
 	
 	private Transfer transfer;
 	
-	public Article(String name, String content, String author, Transfer transfer) {
+	private Article(String name, String content, String author, Transfer transfer) {
 		this.content = content;
 		this.author = author;
 		this.transfer = transfer;
+		this.name = name;
+	}
+	
+	public static Article createArticle(Transfer transfer, String name, String content, String author) throws Exception {
+		if (transfer == null) {
+			throw new Exception("Transfer does not exist!");
+		}
+		
+		Article article = new Article(name, content, author, transfer);
+	
+		transfer.addArticle(article);
+		
+		return article;
 	}
 	
 	@Override
 	public String toString() {
-		return "Article '" + name + "' by " + author + " about transfer "
-	+ transfer.getPlayer()  + " in " + transfer.getNewClub() + "\n" + content;
+		return "Article '" + name + "' by " + author  + "\n" + content;
 	}
 	
 }

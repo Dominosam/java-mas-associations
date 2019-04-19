@@ -12,15 +12,12 @@ public class Transfer {
 	private Player player;
 	
 	private List<Article> articles = new ArrayList<>();
-	private static Set<Article> allArticles = new HashSet<>();
+	//private static Set<Article> allArticles = new HashSet<>();
 	
 	public void addArticle(Article article) throws Exception {
 		if(!articles.contains(article)) {
-			throw new Exception("There is already that aricle");
+			articles.add(article);
 		}
-		
-		articles.add(article);
-		allArticles.add(article);
 	}
 	
 	
@@ -30,19 +27,29 @@ public class Transfer {
 		this.newClub = newClub;
 	}
 	
+	
 	public void setPlayer(Player player) {
-		if(this.player != null && this.player != player) {
+		if(this.player != null) {
 			player.clearTransferConnections();
+		}
+		
+		if(this.player != player) {
 			this.player = player;
 			player.addTransfer(this);
-		}else {
-			this.player = player;
 		}
 	}
 	
 	public String toString() {
-		return  newClub + " new tranfser! :"
-				+ "\n Fee: " + fee + "; date: " + date + "; Player: " + player;
+		String info =  newClub + " new tranfser! :"
+				+ "\n Fee: " + fee + "; date: " + date + "; Player: " + player 
+				+ "\n Availble articles: ";
+		
+		for (Article article : articles) {
+			info += article;
+		}
+		
+		return info;
+	
 	}
 
 	public int getFee() {

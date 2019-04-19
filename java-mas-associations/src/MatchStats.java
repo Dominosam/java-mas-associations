@@ -14,6 +14,7 @@ public class MatchStats {
 		this.match = match;		
 		calculateScoredGoals();
 		match.setPlayerInMatch(this);
+		
 	}
 
 
