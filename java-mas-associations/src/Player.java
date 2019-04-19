@@ -11,7 +11,8 @@ public class Player {
 	private int yellowCards;
 	private int redCards;
 	private Club currentClub;
-	private NationalTeam nationalTeam = null;
+	private int scoredGoals;
+	private MatchStats playerInMatch;
 	
 	public Player(int id,String name, String surname, float marketValue, DominantFoot dominantFoot, int yellowCards,
 			int redCards)
@@ -21,8 +22,6 @@ public class Player {
 		this.surname = surname;
 		this.marketValue = marketValue;
 		this.dominantFoot = dominantFoot;
-		this.yellowCards = yellowCards;
-		this.redCards = redCards;
 	}
 	
 	public int getId() {
@@ -35,7 +34,23 @@ public class Player {
 	
 	@Override
 	public String toString() {
-		return name + " " + surname;
+		return name + " " + surname + "\n";
+	}
+	
+	public void addYellowCards(int yellowCards) {
+		this.yellowCards += yellowCards;
+	}
+	
+	public void addRedCards(int redCards) {
+		this.redCards += redCards;
+	}
+	
+	public void addScoredGoals(int scoredGoals) {
+		this.scoredGoals += scoredGoals;
+	}
+
+	public void setPlayerInMatch(MatchStats playerInMatch) {
+		this.playerInMatch = playerInMatch;			
 	}
 	
 }
