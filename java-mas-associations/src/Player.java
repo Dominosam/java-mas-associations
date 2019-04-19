@@ -1,5 +1,5 @@
-
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class Player {
 	
@@ -12,7 +12,9 @@ public class Player {
 	private int redCards;
 	private Club currentClub;
 	private int scoredGoals;
-	private MatchStats playerInMatch;
+	
+	private MatchStats matchStats;
+	private List<Transfer> transfers = new ArrayList<Transfer>();
 	
 	public Player(int id,String name, String surname, float marketValue, DominantFoot dominantFoot, int yellowCards,
 			int redCards)
@@ -32,6 +34,18 @@ public class Player {
 		currentClub = club;
 	}
 	
+	public void addTransfer(Transfer tranfser) {
+		if(!transfers.contains(tranfser)) {
+			transfers.add(tranfser);
+		}
+		
+		tranfser.setPlayer(this);
+	}
+	
+	public void clearTransferConnections() {
+		transfers.clear();
+	}
+	
 	@Override
 	public String toString() {
 		return name + " " + surname + "\n";
@@ -48,9 +62,26 @@ public class Player {
 	public void addScoredGoals(int scoredGoals) {
 		this.scoredGoals += scoredGoals;
 	}
+	
 
-	public void setPlayerInMatch(MatchStats playerInMatch) {
-		this.playerInMatch = playerInMatch;			
+	public void setMatchStats(MatchStats matchStats) {
+		if(this.matchStats != null) {
+			matchStats.clearPlayerConnections();
+			this.matchStats = matchStats;			
+			matchStats.addPlayer(this);
+		}else {
+			this.matchStats = matchStats;
+		}
+		
+	}
+	
+
+	public void showTransfers() {
+		System.out.println(this);
+		for (Transfer transfer : transfers) {
+			System.out.println(transfer.getNewClub() + " " + transfer.getDate() 
+			+ "; fee: " + transfer.getFee());
+		}
 	}
 	
 }

@@ -32,7 +32,11 @@ public class MatchStats {
 			players.add(player);
 		}
 		
-		player.setPlayerInMatch(this);
+		player.setMatchStats(this);
+	}
+	
+	public void clearPlayerConnections() {
+		players.clear();
 	}
 	
 //	public void addMatch(Match match) {
@@ -62,9 +66,7 @@ public class MatchStats {
 		
 	}
 	
-	public void showPlayerStats(Player player) {
-		
-	}
+	
 	
 	
 }

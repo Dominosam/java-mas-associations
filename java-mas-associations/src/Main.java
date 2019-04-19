@@ -11,7 +11,7 @@ public class Main {
 		  
 		  Club realMadrid = new Club("Real Madrid", "La Liga", LocalDate.of(1902, 3, 6));
 		
-		  System.out.println("///KWALIFIKOWANA");
+		  System.out.println("///QUALIFIED");
 		  System.out.println(realMadrid.toString());		  
 		  realMadrid.addPlayerQualif(cristianoRonaldo);
 		  realMadrid.addPlayerQualif(lukaModric);
@@ -20,14 +20,27 @@ public class Main {
 		  System.out.println(realMadrid.toString());
 		  System.out.println();
 		  
+		  
+		  System.out.println("///WITH ATTRIBUTE");
+		  
 		  Match realBarca = new Match(LocalDate.of(2018, 10, 15),"2:1","Real Madrid", "FC Barcelona");
 		  MatchStats statsRealBarca = new MatchStats(realBarca, 11, 1);
 		  
-		 statsRealBarca.addPlayer(cristianoRonaldo);
-		 statsRealBarca.addPlayer(sergioRamos);
-		 statsRealBarca.addPlayer(lionelMessi);
+		  statsRealBarca.addPlayer(cristianoRonaldo);
+		  statsRealBarca.addPlayer(sergioRamos);
+		  statsRealBarca.addPlayer(lionelMessi);
 		 
-		 System.out.println(statsRealBarca);
+		  System.out.println(statsRealBarca);
+		  
+		  
+		 
+		  System.out.println("///ASSOCIATION");
+		  Transfer cristianoToJuve = new Transfer(110000000, LocalDate.of(2018, 07, 15), "Juventus");
+		  cristianoRonaldo.addTransfer(cristianoToJuve);
+		 
+		  System.out.println(cristianoToJuve);
+		  cristianoRonaldo.showTransfers();
+		  
 		 
 	  }
 }
