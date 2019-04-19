@@ -1,6 +1,8 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Transfer {
 	private int fee;
@@ -8,6 +10,19 @@ public class Transfer {
 	private String newClub;
 	
 	private Player player;
+	
+	private List<Article> articles = new ArrayList<>();
+	private static Set<Article> allArticles = new HashSet<>();
+	
+	public void addArticle(Article article) throws Exception {
+		if(!articles.contains(article)) {
+			throw new Exception("There is already that aricle");
+		}
+		
+		articles.add(article);
+		allArticles.add(article);
+	}
+	
 	
 	public Transfer(int fee, LocalDate date, String newClub) {
 		this.fee = fee;
@@ -40,5 +55,9 @@ public class Transfer {
 
 	public String getNewClub() {
 		return newClub;
+	}
+	
+	public Player getPlayer() {
+		return player;
 	}
 }
